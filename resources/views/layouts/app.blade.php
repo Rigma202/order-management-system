@@ -38,7 +38,9 @@
             </li>
 
             <li class="nav-item mb-2">
-
+                <a href="{{ route('products.index') }}" class="nav-link text-white">
+                    Products
+                </a>
             </li>
 
         </ul>

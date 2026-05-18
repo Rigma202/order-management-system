@@ -63,12 +63,11 @@ $('#customerForm').submit(function(e){
     e.preventDefault();
 
     let id = $('#customer_id').val();
-
     let name = $('#name').val();
     let email = $('#email').val();
     let phone_number = $('#phone_number').val();
     let address = $('#address').val();
-
+    let hasError = false;
     if (!name) {
         $('#name_error').text('Name is required');
         hasError = true;
@@ -88,6 +87,9 @@ $('#customerForm').submit(function(e){
         $('#address_error').text('Address is required');
         hasError = true;
     }
+    if (hasError) {
+            return;
+        }
     $.ajax({
         url: "/customers/" + id,
         type: "POST",
