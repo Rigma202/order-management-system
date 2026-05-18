@@ -1,65 +1,55 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Http\Requests\CustomerRequest;
 use Illuminate\Http\Request;
+use App\Services\CustomerService;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $customerService;
+
+    public function __construct(CustomerService $customerService)
+    {
+        $this->customerService = $customerService;
+    }
+
     public function index()
     {
-        //
+        $customers = $this->customerService->getAllCustomers();
+        return view('customer.index', compact('customers'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('customer.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
-        //
+
+        $this->customerService->storeCustomer($request->validated());
+        return redirect()->route('customers.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Customer $customer)
+    public function edit($id)
     {
-        //
+        $customer = $this->customerService->getCustomerById($id);
+
+        return view('customer.edit', compact('customer'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Customer $customer)
+    public function update(Request $request, $id)
     {
-        //
+        $this->customerService->updateCustomer($id, $request->all());
+
+        return redirect()->route('customers.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Customer $customer)
+    public function destroy($id)
     {
-        //
-    }
+        $this->customerService->deleteCustomer($id);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Customer $customer)
-    {
-        //
+        return redirect()->route('customers.index');
     }
 }
