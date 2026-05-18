@@ -101,7 +101,7 @@ $('#productForm').submit(function(e){
             name: name,
             description: description,
             price: price,
-            stock: stock
+            stock_quantity: stock
         },
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
