@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Services\OrderService;
 use App\Http\Requests\StoreOrderRequest;
 use Illuminate\Session\Store;
+use App\Mail\OrderPlacedMail;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -43,7 +45,9 @@ class OrderController extends Controller
     public function store(StoreOrderRequest $request)
     {
         $data = $request->validated();
-        $this->orderService->createOrder($data);
+        $order = $this->orderService->createOrder($data);
+        Mail::to($order->customer->email)
+            ->queue(new OrderPlacedMail($order));
         return redirect()->route('orders.create');
     }
 
