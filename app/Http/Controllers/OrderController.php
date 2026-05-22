@@ -53,7 +53,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $order_details = $this->orderService->getOrderDetails($order->id);
+        return view('orders.show', compact('order_details'));
     }
 
     /**

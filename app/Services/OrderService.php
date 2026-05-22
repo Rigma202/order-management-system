@@ -51,5 +51,10 @@ class OrderService
         DB::commit();
         return $order;
     }
+    public function getOrderDetails($orderId)
+    {
+       $order= Order::with('customer','orderItems.product')->findOrFail($orderId);
+       return $order;
+    }
 }
 
