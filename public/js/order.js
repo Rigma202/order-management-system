@@ -93,13 +93,14 @@ console.log(total,items);
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
-
-            if (response.status === "success") {
-                alert("Order placed successfully!");
-                window.location.href = "{{ route('orders.index') }}";
-            } else {
-                
-            }
+                Swal.fire({
+                title: 'Order Created!',
+                text: 'Your order has been created successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+                }).then(() => {
+                window.location.href = "/orders";
+                });
 
         },
         error: function (xhr) {

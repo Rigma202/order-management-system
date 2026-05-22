@@ -56,5 +56,10 @@ class OrderService
        $order= Order::with('customer','orderItems.product')->findOrFail($orderId);
        return $order;
     }
+    public function deleteOrder($orderId)
+        {
+            $order = Order::findOrFail($orderId);
+            $order->delete();
+        }
 }
 

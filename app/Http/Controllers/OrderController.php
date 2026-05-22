@@ -44,8 +44,7 @@ class OrderController extends Controller
     {
         $data = $request->validated();
         $this->orderService->createOrder($data);
-        return redirect()->route('orders.index')
-            ->with('success', 'Order created successfully');
+        return redirect()->route('orders.create');
     }
 
     /**
@@ -78,6 +77,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $this->orderService->deleteOrder($order->id);
+        return redirect()->route('orders.index');
     }
 }
