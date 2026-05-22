@@ -8,21 +8,21 @@
 
     <div class="col-md-4">
         <div class="card p-3">
-            <h4>Total Customers</h4>
+            <h4>Total Customers - {{ $customerCount }}</h4>
 
         </div>
     </div>
 
     <div class="col-md-4">
         <div class="card p-3">
-            <h4>Total Products</h4>
+            <h4>Total Products - {{ $productCount }}</h4>
 
         </div>
     </div>
 
     <div class="col-md-4">
         <div class="card p-3">
-            <h4>Total Orders</h4>
+            <h4>Total Orders - {{ $orderCount }}</h4>
 
         </div>
     </div>

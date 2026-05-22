@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Customer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Product;
+use App\Models\Order;
 
 class ProfileController extends Controller
 {
@@ -19,7 +22,10 @@ class ProfileController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             if ($user->role === 'admin') {
-                return view('admin.dashboard');
+            $productCount=Product::where('stock_quantity', '>', 1)->count();
+            $customerCount=Customer::count();
+            $orderCount=Order::count();
+                return view('admin.dashboard', compact('productCount', 'customerCount', 'orderCount' ));
             } elseif ($user->role === 'customer') {
                 return view('dashboard');
             }else{
