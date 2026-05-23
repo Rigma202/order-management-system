@@ -5,7 +5,13 @@
 <div class="d-flex justify-content-between mb-3">
 
     <h2>Products</h2>
-
+    <input
+        type="text"
+        name="search"
+        placeholder="Search product..."
+        value="{{ request('search') }}"
+    >
+    <button type="submit" id="search_product" class="btn btn-primary">Search</button>
     <a href="{{ route('products.create') }}" class="btn btn-primary">
         Add Product
     </a>
@@ -81,6 +87,10 @@ $(document).on('submit', '.delete-form', function(e){
 
     });
 
+});
+$(document).on('click', '#search_product', function(){
+    let searchTerm = $('input[name="search"]').val();
+    window.location.href = "{{ route('products.search') }}?search=" + searchTerm;
 });
 </script>
 @endpush

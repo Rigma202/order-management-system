@@ -59,4 +59,13 @@ class ProductController extends Controller
         return redirect()->route('products.index')
                          ->with('success', 'Product deleted successfully');
     }
+    public function search(Request $request)
+    {
+        $products = $this
+            ->productService
+            ->searchProduct($request->input('search'))
+            ->get();
+
+        return view('product.index', compact('products'));
+    }
 }

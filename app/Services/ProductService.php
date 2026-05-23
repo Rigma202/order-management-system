@@ -31,4 +31,9 @@ class ProductService
         $product = Product::findOrFail($id);
         $product->delete();
     }
+    public function searchProduct($searchTerm)
+    {
+        $products = Product::where('name', 'like', "%{$searchTerm}%");
+        return $products;
+    }
 }
