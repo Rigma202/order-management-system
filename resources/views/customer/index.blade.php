@@ -57,7 +57,9 @@
     @endforeach
 
 </table>
-
+<div class="mt-3">
+    {{ $customers->links() }}
+</div>
 
 @endsection
 @push('scripts')

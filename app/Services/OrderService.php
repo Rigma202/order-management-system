@@ -11,7 +11,7 @@ class OrderService
 {
     public function getAllOrders()
     {
-        return Order::with('customer')->get();
+        return Order::with('customer')->paginate(7);
     }
     public function getAllCustomers()
     {

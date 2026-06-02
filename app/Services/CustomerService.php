@@ -7,7 +7,7 @@ class CustomerService
 {
     public function getAllCustomers()
     {
-        return Customer::all();
+        return Customer::paginate(7);
     }
 
     public function storeCustomer($data)

@@ -64,7 +64,9 @@
 
 </table>
 
-
+<div class="mt-3">
+    {{ $products->links() }}
+</div>
 @endsection
 @push('scripts')
 <script>

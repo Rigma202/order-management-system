@@ -68,7 +68,9 @@
     @endforeach
 
 </table>
-
+<div class="mt-3">
+    {{ $orders->links() }}
+</div>
 @endsection
 
 

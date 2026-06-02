@@ -7,7 +7,7 @@ class ProductService
 {
     public function getAllProducts()
     {
-        return Product::all();
+        return Product::paginate(7);
     }
 
     public function storeProduct($data)
