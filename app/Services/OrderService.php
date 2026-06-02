@@ -36,16 +36,14 @@ class OrderService
 
         foreach ($data['items'] as $item) {
 
-            $product = Product::find($item['product_id']);
             OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $item['product_id'],
                 'quantity' => $item['quantity'],
                 'subtotal' => $item['price']
             ]);
-
-            $product->stock_quantity = abs($product->stock_quantity - $item['quantity']);
-            $product->save();
+            Product::where('id', $item['product_id'])
+                ->decrement('stock_quantity', $item['quantity']);
         }
 
         DB::commit();
