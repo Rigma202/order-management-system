@@ -1,6 +1,5 @@
 
 document.addEventListener("DOMContentLoaded", function () {
-
     const addBtn = document.getElementById("addRow");
     const tbody = document.getElementById("orderItems");
 
@@ -13,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         newRow.querySelector(".price").innerText = "₹ 0.00";
 
         tbody.appendChild(newRow);
+        updateProductOptions();
     });
 
     tbody.addEventListener("click", function (e) {
@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (rows.length > 1) {
                 e.target.closest("tr").remove();
                 calculateTotal();
+                updateProductOptions();
             }
         }
     });
@@ -30,6 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("change", function (e) {
 
+    if (e.target.classList.contains("product")) {
+        updateProductOptions();
+    }
     if (e.target.classList.contains("product") || e.target.classList.contains("qty")) {
 
         const row = e.target.closest("tr");
@@ -123,3 +127,26 @@ console.log(total,items);
         }
     });
 });
+function updateProductOptions() {
+
+    let selectedProducts = [];
+    document.querySelectorAll(".product").forEach(select => {
+        if (select.value) {
+            selectedProducts.push(select.value);
+        }
+    });
+    document.querySelectorAll(".product").forEach(select => {
+        const currentValue = select.value;
+        select.querySelectorAll("option").forEach(option => {
+            if (!option.value) return;
+            option.disabled = false;
+            if (
+                option.value !== currentValue &&
+                selectedProducts.includes(option.value)
+            ) {
+                option.disabled = true;
+            }
+        });
+
+    });
+}
