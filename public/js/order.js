@@ -1,4 +1,8 @@
-
+$(document).ready(function () {
+    $('#customer_id').select2({
+        placeholder: 'Search Customer'
+    });
+});
 document.addEventListener("DOMContentLoaded", function () {
     const addBtn = document.getElementById("addRow");
     const tbody = document.getElementById("orderItems");
