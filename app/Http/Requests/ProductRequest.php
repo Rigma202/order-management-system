@@ -26,8 +26,8 @@ class ProductRequest extends FormRequest
 
             'name' => 'required',
             'description' => 'required|max:255',
-            'price' => 'required|numeric|min:1',
-            'stock_quantity' => 'required|integer|min:1',
+            'price' => 'required|numeric',
+            'stock_quantity' => 'required|integer',
 
         ];
     }
@@ -39,10 +39,8 @@ class ProductRequest extends FormRequest
             'description.required' => 'Description is required',
             'price.required' => 'Price is required',
             'price.numeric' => 'Price must be a number',
-            'price.min' => 'Price must be greater than 0',
             'stock_quantity.required' => 'Stock is required',
             'stock_quantity.integer' => 'Stock must be an integer',
-            'stock_quantity.min' => 'Stock must be greater than 0',
             'phone_number.required' => 'Phone number is required',
             'address.required' => 'Address is required',
 

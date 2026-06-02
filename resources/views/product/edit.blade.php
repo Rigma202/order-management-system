@@ -22,20 +22,20 @@
 
             <div class="mb-3">
                 <label class="form-label">Description</label>
-                <input type="text" id="description" value="{{ $product->description }}" class="form-control form-control-sm">
+                <textarea type="text" id="description" class="form-control form-control-sm">{{ $product->description }}</textarea>
                 <small class="text-danger" id="description_error"></small>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Price</label>
                 <input type="number" id="price" value="{{ $product->price }}" class="form-control form-control-sm" step="0.01">
-                <small class="text-danger" id="price_error"></small>
+
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Stock</label>
                 <input type="number" id="stock" value="{{ $product->stock_quantity }}" class="form-control form-control-sm">
-                <small class="text-danger" id="stock_error"></small>
+
             </div>
 
             <div class="text-center">
@@ -79,16 +79,6 @@ $('#productForm').submit(function(e){
         hasError = true;
     }
 
-    if (!price || price <= 0) {
-         $('#price_error').text('Price must be greater than 0');
-         hasError = true;
-    }
-
-    if (!stock || stock <= 0) {
-        $('#stock_error').text('Stock must be greater than 0');
-        hasError = true;
-    }
-
     if (hasError) {
         return;
     }
@@ -129,12 +119,6 @@ $('#productForm').submit(function(e){
                 }
                 if(errors.description){
                     $('#description_error').text(errors.description[0]);
-                }
-                if(errors.price){
-                    $('#price_error').text(errors.price[0]);
-                }
-                if(errors.stock){
-                    $('#stock_error').text(errors.stock[0]);
                 }
             }
         }

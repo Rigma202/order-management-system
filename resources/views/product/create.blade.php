@@ -20,20 +20,27 @@
 
             <div class="mb-3">
                 <label class="form-label">Description</label>
-                <input type="text" name="description" id="product_description" class="form-control form-control-sm">
+
+                <textarea
+                    name="description"
+                    id="product_description"
+                    class="form-control form-control-sm"
+                    rows="4"
+                ></textarea>
+
                 <small class="text-danger" id="description_error"></small>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Price</label>
                 <input type="number" name="price" id="product_price" min=0 class="form-control form-control-sm" step="0.01">
-                <small class="text-danger" id="price_error"></small>
+
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Stock</label>
                 <input type="number" name="stock" id="product_stock" min=0 class="form-control form-control-sm">
-                <small class="text-danger" id="stock_error"></small>
+
             </div>
 
 
@@ -98,12 +105,6 @@ $('#productForm').submit(function(e){
                 }
                 if(errors.description){
                     $('#description_error').text(errors.description[0]);
-                }
-                if(errors.price){
-                    $('#price_error').text(errors.price[0]);
-                }
-                if(errors.stock){
-                    $('#stock_error').text(errors.stock[0]);
                 }
 
             }

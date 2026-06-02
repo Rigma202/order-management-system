@@ -19,9 +19,7 @@ class OrderService
     }
     public function getAllProducts()
     {
-        return Product::where('stock_quantity', '>', 0)
-                    ->orderBy('name')
-                    ->get();
+        return Product::all();
     }
 
     public function createOrder(array $data)
