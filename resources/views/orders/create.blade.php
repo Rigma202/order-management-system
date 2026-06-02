@@ -38,6 +38,7 @@
                 <thead>
                     <tr>
                         <th>Product</th>
+                        <th>Available Stock</th>
                         <th width="120">Qty</th>
                         <th>Price</th>
                         <th>
@@ -55,13 +56,13 @@
                         <select class="form-control product">
                             <option value="">Select Product</option>
                             @foreach($products as $product)
-                                <option value="{{ $product->id }}" data-price="{{ $product->price }}">
+                                <option value="{{ $product->id }}" data-price="{{ $product->price }}" data-stock="{{ $product->stock_quantity }}">
                                     {{ $product->name }}
                                 </option>
                             @endforeach
                         </select>
                     </td>
-
+                    <td><label class="form-control stock_quantity">0</label></td>
                     <td>
                         <input type="number" class="form-control qty" value="1" min="1">
                     </td>
